@@ -64,7 +64,7 @@ const Dashboard = () => {
         {/*table blogs */}
 
         <div className='relative max-w-4xl overflow-x-auto shadow rounded-lg
-        scrollbar-hide bg-white'>
+         scrollbar-hide bg-white'>
           <table className='w-full text-sm text-left text-gray-500'>
             <thead className='text-xs text-gray-700 uppercase bg-blue-50'>
               <tr>
