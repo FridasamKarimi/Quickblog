@@ -2,6 +2,7 @@ import fs from 'fs';
 import imagekit from '../configs/imageKit';
 import Blog from  '../models/blog.js';
 import Comment from '../models/Comment.js';
+import main from '../configs/gemini.js';
 
 
 
@@ -110,7 +111,7 @@ export const addComment = async (req, res) =>{
     }
 }
 
-export const getBlogcomments = async (req, res) =>{
+export const getBlogComments = async (req, res) =>{
     try {
         const { blogId } = req.body;
         const comments = (await Comment.find({blog: blogId, isApproved: true})).sort
@@ -119,5 +120,15 @@ export const getBlogcomments = async (req, res) =>{
     } catch (error) {
         res.json({success: false, message: error.message})
         
+    }
+}
+
+export const generateContent = async (req, res)=>{
+    try {
+        const {prompt} = req.body;
+        await main(prompt + 'generate a blog content for this topiic in simple text format')
+        res.json({success: true, contents})
+    } catch (error) {
+        res.json({success: false, message: error})
     }
 }
